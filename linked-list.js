@@ -93,7 +93,7 @@ class LinkedList {
     let currNode = this.head;
     let prevNode = this.head;
 
-    while ((currNode !== null) && (currNode.value !== beforeNode) ) {
+    while ((currNode.next !== null) && (currNode.value !== beforeNode) ) {
       prevNode = currNode;
       currNode = currNode.next;
     }
@@ -218,6 +218,24 @@ function findLast(list) {
   return currNode.value;
 }
 
+function WhatDoesThisProgramDo(lst){
+  let current = lst.head;
+  while(current !== null){
+    let newNode = current;
+    while (newNode.next !== null) {
+      if (newNode.next.value === current.value) {
+        newNode.next = newNode.next.next;
+      }
+      else{
+        newNode = newNode.next;
+      }
+    }
+    console.log('!!!!!!!!!!!!newNode', newNode);
+    console.log('this is current', current);
+    current = current.next;
+  }
+}
+
 
 
 const SLL = new LinkedList();
@@ -248,7 +266,7 @@ function main() {
   //   console.log(SLL.find('Helo'));
 //   return SLL;
 }
-// console.log(main());
+
 main();
 display(SLL);
 size(SLL);
@@ -256,5 +274,6 @@ size(SLL);
 isEmpty(myLL);
 findPrevious(SLL, 'Dog');
 findLast(SLL);
+WhatDoesThisProgramDo(SLL);
 
 
