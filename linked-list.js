@@ -141,11 +141,29 @@ class LinkedList {
     }
   }
 
+}
+
+function display(list) {
+  if (list.head) {
+    console.log(list.head.value);
+  }
+  if (!list.head) {
+    console.log('The list is empty');
+  }
+
+  let currNode = list.head;
+
+  while (currNode.next !== null) {
+    console.log(currNode.next.value);
+    currNode = currNode.next;
+  }
 
 }
 
+const SLL = new LinkedList();
+// const myLL = new LinkedList();
+
 function main() {
-  const SLL = new LinkedList();
 
   SLL.insertFirst('Apollo');
   SLL.insertLast('Boomer');
@@ -158,15 +176,19 @@ function main() {
   //   SLL.insertBefore('Alexa', 'Helo');
 
   SLL.insertAfter('Alexa', 'Husker');
-//   console.log(SLL.find('Alexa'));
+  //   console.log(SLL.find('Alexa'));
 
   SLL.insertAt('Dog', 2);
 
   //   SLL.remove('squirrel'); // => 'Item not found'
+
+  SLL.remove('Tauhida');
   
-  console.log(JSON.stringify(SLL, null, 2))
+  console.log(JSON.stringify(SLL, null, 2));
   //   console.log(SLL.find('Helo'));
 //   return SLL;
 }
 // console.log(main());
 main();
+display(SLL);
+// display(myLL);
