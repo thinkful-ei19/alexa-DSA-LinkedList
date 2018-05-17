@@ -177,10 +177,19 @@ function size(list) {
   return num;
 }
 
+function isEmpty(list) {
+  if(!list.head) {
+    console.log('This list is empty');
+    return;
+  } else {
+    return false;
+  }
+}
+
 
 
 const SLL = new LinkedList();
-// const myLL = new LinkedList();
+const myLL = new LinkedList();
 
 function main() {
 
@@ -212,4 +221,5 @@ main();
 display(SLL);
 size(SLL);
 // display(myLL);
+isEmpty(myLL);
 
