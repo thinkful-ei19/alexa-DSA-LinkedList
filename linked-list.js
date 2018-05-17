@@ -157,8 +157,27 @@ function display(list) {
     console.log(currNode.next.value);
     currNode = currNode.next;
   }
-
 }
+
+function size(list) {
+  let num = 0;
+  if (list.head) {
+    num = 1;
+  } else {
+    console.log('The list is empty');
+  }
+
+  let currNode = list.head;
+
+  while (currNode.next !== null) {
+    num++;
+    currNode = currNode.next;
+  }
+  console.log('The size of the linked list is ', num);
+  return num;
+}
+
+
 
 const SLL = new LinkedList();
 // const myLL = new LinkedList();
@@ -191,4 +210,6 @@ function main() {
 // console.log(main());
 main();
 display(SLL);
+size(SLL);
 // display(myLL);
+
