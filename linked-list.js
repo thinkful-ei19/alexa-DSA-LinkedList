@@ -121,8 +121,24 @@ class LinkedList {
   }
 
 
-  insertAt() {
+  insertAt(newItem, number) {
+    if (!this.head === null) {
+      this.insertFirst(newItem);
+    } else {
+      let currNode = this.head;
+      let prevNode = this.head;
+      let counter = 0;
 
+      while(counter !== number) {
+        prevNode = currNode;
+        currNode = currNode.next;
+        counter++;
+      }
+      let n = new _Node(newItem);
+      prevNode.next = n;
+      n.next = currNode;
+
+    }
   }
 
 
@@ -139,15 +155,18 @@ function main() {
 
   SLL.insertLast('Tauhida');
   
-//   SLL.insertBefore('Alexa', 'Helo');
+  //   SLL.insertBefore('Alexa', 'Helo');
 
   SLL.insertAfter('Alexa', 'Husker');
-  console.log(SLL.find('Alexa'));
+//   console.log(SLL.find('Alexa'));
+
+  SLL.insertAt('Dog', 2);
 
   //   SLL.remove('squirrel'); // => 'Item not found'
   
+  console.log(JSON.stringify(SLL, null, 2))
   //   console.log(SLL.find('Helo'));
-  return SLL;
+//   return SLL;
 }
 // console.log(main());
 main();
