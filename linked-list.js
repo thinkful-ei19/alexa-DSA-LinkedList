@@ -186,6 +186,23 @@ function isEmpty(list) {
   }
 }
 
+function findPrevious(list, item) {
+  if (!list.head) {
+    return;
+  }
+
+  let currNode = list.head;
+  let prevNode = list.head;
+
+  while (currNode.value !== item) {
+    prevNode = currNode;
+    currNode = currNode.next;
+  }
+
+  console.log('This is the previous node', prevNode.value);
+  return prevNode.value;
+}
+
 
 
 const SLL = new LinkedList();
@@ -222,4 +239,5 @@ display(SLL);
 size(SLL);
 // display(myLL);
 isEmpty(myLL);
+findPrevious(SLL, 'Dog');
 
