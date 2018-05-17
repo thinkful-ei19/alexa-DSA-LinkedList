@@ -199,8 +199,23 @@ function findPrevious(list, item) {
     currNode = currNode.next;
   }
 
-  console.log('This is the previous node', prevNode.value);
+  console.log('This is the previous node:', prevNode.value);
   return prevNode.value;
+}
+
+function findLast(list) {
+  if(!list.head) {
+    return;
+  }
+
+  let currNode = list.head;
+
+  while (currNode.next !== null) {
+    currNode = currNode.next;
+  }
+
+  console.log('This is the last value in the list:', currNode.value);
+  return currNode.value;
 }
 
 
@@ -240,4 +255,6 @@ size(SLL);
 // display(myLL);
 isEmpty(myLL);
 findPrevious(SLL, 'Dog');
+findLast(SLL);
+
 
