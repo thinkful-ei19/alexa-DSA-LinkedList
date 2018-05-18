@@ -300,6 +300,31 @@ function middleOfList(list) {
   return slowPtr.value;
 }
 
+// ****Traverse the whole linked list and count the no. of nodes. 
+// Now traverse the list again till count/2 and return the node at count/2.
+function middleOfList2(list) {
+  if (!list.head) {
+    return;
+  }
+
+  let currNode = list.head;
+  let counter = 0;
+
+  while (currNode !== null) {
+    currNode = currNode.next;
+    counter++;
+  }
+
+  let half = counter / 2;
+
+  while (currNode !== half && currNode.next !== null) {
+    currNode = currNode.next;
+  }
+
+  console.log('this is the middle of list using method 2:', currNode.value);
+  return currNode.value;
+}
+
 
 
 const SLL = new LinkedList();
@@ -345,6 +370,7 @@ display(SLL);
 size(SLL);
 thirdFromEnd(SLL);
 middleOfList(SLL);
+middleOfList2(SLL);
 // console.log(JSON.stringify(reverseList(SLL), null, 2));
 
 
