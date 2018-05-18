@@ -17,10 +17,13 @@ class LinkedList {
   }
 
   insertLast(item) {
+    // if list is empty, then insert new item as only item in the list
     if(this.head === null) {
       this.insertFirst(item);
     } else {
+      // start at head
       let tempNode = this.head;
+      // loop will run to end of list
       while(tempNode.next !== null) {
         tempNode = tempNode.next;
       }
@@ -84,34 +87,40 @@ class LinkedList {
   // Return from the function.
   insertBefore(newItem, beforeNode) {
     if (!this.head) {
-      return;
+      this.insertFirst(newItem);
     }
     if (this.head.value === beforeNode) {
       this.insertFirst(newItem);
     }
 
+    // start at head (or null)
+    // currNode will go and prevNode will follow
     let currNode = this.head;
     let prevNode = this.head;
 
+    // loop as long as we are not at end of list && we are not at the node we want to insert before
     while ((currNode.next !== null) && (currNode.value !== beforeNode) ) {
       prevNode = currNode;
       currNode = currNode.next;
     }
-
+    // once we find the beforeNode
+    // create new node
     prevNode.next = new _Node(newItem, currNode);
   }
 
   insertAfter(newItem, afterNode) {
     if (!this.head) {
-      return;
+      this.insertFirst(newItem);
     }
     if (!this.head.next) {
       this.insertLast(newItem);
     }
 
+    // start at head
     let currNode = this.head;
     let nextNode = this.head;
 
+    // loop as long as we are not at the node we want to insert after
     while (currNode.value !== afterNode) {
       currNode = nextNode;
       nextNode = nextNode.next;
@@ -121,7 +130,7 @@ class LinkedList {
   }
 
 
-  insertAt(newItem, number) {
+  insertAt(newItem, position) {
     if (!this.head === null) {
       this.insertFirst(newItem);
     } else {
@@ -129,7 +138,7 @@ class LinkedList {
       let prevNode = this.head;
       let counter = 0;
 
-      while(counter !== number) {
+      while(counter !== position) {
         prevNode = currNode;
         currNode = currNode.next;
         counter++;
@@ -144,17 +153,14 @@ class LinkedList {
 }
 
 function display(list) {
-  if (list.head) {
-    console.log(list.head.value);
-  }
-  if (!list.head) {
-    console.log('The list is empty');
-  }
+//   if (!list.head) {
+//     console.log('The list is empty');
+//   }
 
   let currNode = list.head;
 
-  while (currNode.next !== null) {
-    console.log(currNode.next.value);
+  while (currNode !== null) {
+    console.log(currNode.value);
     currNode = currNode.next;
   }
 }
@@ -165,13 +171,14 @@ function size(list) {
     num = 1;
   } else {
     console.log('The list is empty');
+    return;
   }
 
   let currNode = list.head;
 
   while (currNode.next !== null) {
-    num++;
     currNode = currNode.next;
+    num++;
   }
   console.log('The size of the linked list is ', num);
   return num;
@@ -182,9 +189,11 @@ function isEmpty(list) {
     console.log('This list is empty');
     return;
   } else {
-    return false;
+    console.log('Not an empty list');
+    return;
   }
 }
+
 
 function findPrevious(list, item) {
   if (!list.head) {
@@ -218,22 +227,58 @@ function findLast(list) {
   return currNode.value;
 }
 
-function WhatDoesThisProgramDo(lst){
-  let current = lst.head;
-  while(current !== null){
-    let newNode = current;
-    while (newNode.next !== null) {
-      if (newNode.next.value === current.value) {
-        newNode.next = newNode.next.next;
-      }
-      else{
-        newNode = newNode.next;
-      }
-    }
-    console.log('!!!!!!!!!!!!newNode', newNode);
-    console.log('this is current', current);
-    current = current.next;
+// Polynomial O(n^2) - doubly nested loops
+// function WhatDoesThisProgramDo(lst){
+//   let current = lst.head;
+//   while(current !== null){
+//     let newNode = current;
+//     while (newNode.next !== null) {
+//       if (newNode.next.value === current.value) {
+//         newNode.next = newNode.next.next;
+//       }
+//       else{
+//         newNode = newNode.next;
+//       }
+//     }
+//     current = current.next;
+//   }
+// }
+
+// try to use one null variable at beginning
+function reverseList(list) {
+  if(!list.head) {
+    return;
   }
+
+  let currNode = list.head;
+  let prevNode = null;
+  let nextNode = null;
+
+  while (currNode !== null) {
+    nextNode = currNode.next;
+    currNode.next = prevNode;
+    prevNode = currNode;
+    currNode = nextNode;
+  }
+
+  list.head = prevNode;
+  return list; 
+}
+
+function thirdFromEnd(list) {
+  if (!list.head) {
+    return;
+  }
+
+  let currNode = list.head;
+
+  while (currNode.next.next.next !== null) {
+    currNode = currNode.next;
+  }
+
+  let thirdItem = currNode.value;
+  console.log('this is the third item from the end', thirdFromEnd);
+  return thirdFromEnd;
 }
 
 
@@ -257,23 +302,43 @@ function main() {
   //   console.log(SLL.find('Alexa'));
 
   SLL.insertAt('Dog', 2);
-
+  SLL.insertAt('Cat', 3);
   //   SLL.remove('squirrel'); // => 'Item not found'
 
   SLL.remove('Tauhida');
-  
+
+  console.log('starbuck where are you?!', SLL.find('Starbuck'));
   console.log(JSON.stringify(SLL, null, 2));
-  //   console.log(SLL.find('Helo'));
-//   return SLL;
+  // console.log(SLL.find('Helo'));
+  //   return SLL;
 }
 
 main();
+// display(SLL);
+
+// display(myLL);
+// isEmpty(SLL);
+// isEmpty(myLL);
+// findPrevious(SLL, 'Dog');
+// findPrevious(SLL, 'Starbuck');
+// findLast(SLL);
+// // WhatDoesThisProgramDo(SLL);
 display(SLL);
 size(SLL);
-// display(myLL);
-isEmpty(myLL);
-findPrevious(SLL, 'Dog');
-findLast(SLL);
-WhatDoesThisProgramDo(SLL);
+thirdFromEnd(SLL);
+console.log(JSON.stringify(reverseList(SLL), null, 2));
+
+// Apollo
+// Boomer
+// Dog
+// Cat
+// Helo
+// Husker
+// Alexa
+// Starbuck
+
+// size = 8 but only printing 7!!
+// what happened to Starbuck ??
+// insertAfter breaks !!
 
 
