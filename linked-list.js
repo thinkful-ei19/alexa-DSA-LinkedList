@@ -277,7 +277,7 @@ function thirdFromEnd(list) {
   }
 
   let thirdItem = currNode.value;
-  console.log('this is the third item from the end', thirdFromEnd);
+  console.log('this is the third item from the end:', thirdItem);
   return thirdFromEnd;
 }
 
@@ -307,7 +307,6 @@ function main() {
 
   SLL.remove('Tauhida');
 
-  console.log('starbuck where are you?!', SLL.find('Starbuck'));
   console.log(JSON.stringify(SLL, null, 2));
   // console.log(SLL.find('Helo'));
   //   return SLL;
@@ -326,7 +325,7 @@ main();
 display(SLL);
 size(SLL);
 thirdFromEnd(SLL);
-console.log(JSON.stringify(reverseList(SLL), null, 2));
+// console.log(JSON.stringify(reverseList(SLL), null, 2));
 
 // Apollo
 // Boomer
@@ -337,8 +336,6 @@ console.log(JSON.stringify(reverseList(SLL), null, 2));
 // Alexa
 // Starbuck
 
-// size = 8 but only printing 7!!
-// what happened to Starbuck ??
-// insertAfter breaks !!
+
 
 
