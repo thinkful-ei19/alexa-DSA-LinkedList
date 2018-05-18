@@ -228,6 +228,8 @@ function findLast(list) {
 }
 
 // Polynomial O(n^2) - doubly nested loops
+// setting newNode to last node?
+
 // function WhatDoesThisProgramDo(lst){
 //   let current = lst.head;
 //   while(current !== null){
@@ -244,7 +246,7 @@ function findLast(list) {
 //   }
 // }
 
-// try to use one null variable at beginning
+// try to use one null variable at beginning instead of two
 function reverseList(list) {
   if(!list.head) {
     return;
@@ -281,6 +283,23 @@ function thirdFromEnd(list) {
   return thirdFromEnd;
 }
 
+function middleOfList(list) {
+  if (!list.head) {
+    return;
+  }
+
+  let fastPtr = list.head;
+  let slowPtr = list.head;
+
+  while (fastPtr !== null && fastPtr.next !== null) {
+    fastPtr = fastPtr.next.next;
+    slowPtr = slowPtr.next;
+  }
+
+  console.log('this is the middle of the list', slowPtr.value);
+  return slowPtr.value;
+}
+
 
 
 const SLL = new LinkedList();
@@ -291,7 +310,8 @@ function main() {
   SLL.insertFirst('Apollo');
   SLL.insertLast('Boomer');
   SLL.insertLast('Helo');
-  SLL.insertLast('Husker');
+  SLL.insertLast('Husker');  
+  SLL.insertLast('Google');
   SLL.insertLast('Starbuck');
 
   SLL.insertLast('Tauhida');
@@ -314,7 +334,6 @@ function main() {
 
 main();
 // display(SLL);
-
 // display(myLL);
 // isEmpty(SLL);
 // isEmpty(myLL);
@@ -325,16 +344,9 @@ main();
 display(SLL);
 size(SLL);
 thirdFromEnd(SLL);
+middleOfList(SLL);
 // console.log(JSON.stringify(reverseList(SLL), null, 2));
 
-// Apollo
-// Boomer
-// Dog
-// Cat
-// Helo
-// Husker
-// Alexa
-// Starbuck
 
 
 
